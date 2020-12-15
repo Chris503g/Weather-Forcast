@@ -24,8 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-			  "node_modules/bootstrap/dist/css/bootstrap.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -40,7 +39,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -91,7 +89,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/FontAwsome/all.js"
+            ]
           }
         },
         "lint": {
@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "weather-forecast-project"
+    }
+  },
+  "defaultProject": "weather-forecast-project",
+  "cli": {
+    "analytics": false
+  }
 }
