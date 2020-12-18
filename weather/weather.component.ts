@@ -36,6 +36,19 @@ export class WeatherComponent implements OnInit {
   latitude: number;
   isSearchSuccessful: boolean;
 
+  urlIconToday = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus1 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus2 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus3 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus4 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus5 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_plus6 = "http://openweathermap.org/img/wn/03d@2x.png";
+
+  urlIconToday_minus1 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_minus2 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_minus3 = "http://openweathermap.org/img/wn/03d@2x.png";
+  urlIconToday_minus4 = "http://openweathermap.org/img/wn/03d@2x.png";
+
   public hour: any;
   public minute: string;
   public second: string;
@@ -94,13 +107,11 @@ export class WeatherComponent implements OnInit {
 
   getWeatherData(){
     fetch('https://api.openweathermap.org/data/2.5/onecall?lat=6.2088&lon=106.8456&exclude=minutely,hourly,alerts&appid=75f224a9280b9d612de738569c117dbb')
-    //fetch('https://api.openweathermap.org/data/2.5/weather?q=jakarta&appid=75f224a9280b9d612de738569c117dbb')
     .then(response=>response.json())
     .then(data=>{this.setWeatherData(data);})
   }
 
   getWeatherDataFromForm(location: HTMLInputElement){
-    // alert(location.value);
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + location.value + '&appid=75f224a9280b9d612de738569c117dbb')
     .then(response=>response.json())
     .then(data=>{this.getCoordinate(data);})
@@ -126,6 +137,12 @@ export class WeatherComponent implements OnInit {
   }
 
   getPastWeatherData(){
+    this.pastTemperature = [-1, -1, -1, -1];
+    this.pastHumidity = [-1, -1, -1, -1];
+    this.urlIconToday_minus1 = "http://openweathermap.org/img/wn/03d@2x.png";
+    this.urlIconToday_minus2 = "http://openweathermap.org/img/wn/03d@2x.png";
+    this.urlIconToday_minus3 = "http://openweathermap.org/img/wn/03d@2x.png";
+    this.urlIconToday_minus4 = "http://openweathermap.org/img/wn/03d@2x.png";
     this.getPastWeatherData1();
   }
 
@@ -166,21 +183,39 @@ export class WeatherComponent implements OnInit {
     //let currentDate = new Date();
     //this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
     this.WeatherData.temp_celcius = (this.WeatherData.current.temp - 273.15).toFixed(1);
-    this.futureTemperature[0] = (this.WeatherData.daily[0].temp.day - 273.15).toFixed(1);
-    this.futureTemperature[1] = (this.WeatherData.daily[1].temp.day - 273.15).toFixed(1);
-    this.futureTemperature[2] = (this.WeatherData.daily[2].temp.day - 273.15).toFixed(1);
-    this.futureTemperature[3] = (this.WeatherData.daily[3].temp.day - 273.15).toFixed(1);
-    this.futureTemperature[4] = (this.WeatherData.daily[4].temp.day - 273.15).toFixed(1);
-    this.futureTemperature[5] = (this.WeatherData.daily[5].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[0] = (this.WeatherData.daily[1].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[1] = (this.WeatherData.daily[2].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[2] = (this.WeatherData.daily[3].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[3] = (this.WeatherData.daily[4].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[4] = (this.WeatherData.daily[5].temp.day - 273.15).toFixed(1);
+    this.futureTemperature[5] = (this.WeatherData.daily[6].temp.day - 273.15).toFixed(1);
     //this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
     //this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
     //this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
     this.WeatherData.current.wind_speed = (this.WeatherData.current.wind_speed).toFixed(0);
+
+    this.urlIconToday = "http://openweathermap.org/img/wn/" + this.WeatherData.current.weather[0].icon + "@2x.png";
+    this.urlIconToday_plus1 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[1].weather[0].icon + "@2x.png";
+    this.urlIconToday_plus2 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[2].weather[0].icon + "@2x.png";
+    this.urlIconToday_plus3 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[3].weather[0].icon + "@2x.png";
+    this.urlIconToday_plus4 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[4].weather[0].icon + "@2x.png";
+    this.urlIconToday_plus5 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[5].weather[0].icon + "@2x.png";
+    this.urlIconToday_plus6 = "http://openweathermap.org/img/wn/" + this.WeatherData.daily[6].weather[0].icon + "@2x.png";
   }
 
   setPastWeatherData(data: any, index: number){
     this.pastTemperature[index] = (data.current.temp - 273.15).toFixed(1);
     this.pastHumidity[index] = data.current.humidity;
+    
+    if(index == 0){
+      this.urlIconToday_minus4 = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    }else if(index == 1){
+      this.urlIconToday_minus3 = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    }else if(index == 2){
+      this.urlIconToday_minus2 = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    }else if(index == 3){
+      this.urlIconToday_minus1 = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    }
   }
   
 }
