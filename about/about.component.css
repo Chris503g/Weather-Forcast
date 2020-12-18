@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+  }
+
+   
+  .box {
+    float: left;
+    width: 50%;
+    padding: 150px;
+    padding-bottom: 300px;
+    height: 300px; 
+  }
+
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  .rectangle {
+    height: 75px;
+    margin: auto;
+    width: 60%;
+    color:white;
+    background-color: rgb(77,77,77);
+    border-radius:7px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+  }
